@@ -21,9 +21,9 @@ This will output the userpass value for your password, open a new terminal and e
 
 ```shell
 . userpass
-curl --url "http://127.0.0.1:7783" --data "{\"userpass\":\"$userpass\",\"method\":\"gen64addrs\",\"passphrase\":\"STRONGPASSPHRASE\"}" | jq
+curl --url "http://127.0.0.1:7783" --data "{\"userpass\":\"$userpass\",\"method\":\"gen64addrs\",\"passphrase\":\"STRONGPASSPHRASE\"}" | jq .addresses > SENDTOALRIGHT
 ```
 
-Save both the output of the command and the marketmaker's output. The marketmaker's output will be used to import the private keys to the daemon once the chain is live. The second half of the command's output should be uploaded here. Either make a pull request to this repo or contact Alright on discord. If you choose to contact Alright, please confirm that your addresses were added before the test begins. Be sure not to upload or send the entire output as it contains the private keys for each address. 
+Save the marketmaker's output. This will be used to import the private keys to the daemon once the chain is live. Send the SENDTOALRIGHT file to Alright on discord or make a pull request to this repo. If you choose to contact Alright, please confirm that your addresses were added before the test begins. 
 
 Please follow the same format. Add 1 file with your username containing your addresses. Please be sure to add *1* address and your username to the distribution file also. 
