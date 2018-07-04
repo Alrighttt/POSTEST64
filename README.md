@@ -1,5 +1,10 @@
 # POSTEST64
 
+For OSX, follow this guide, but run `./client_osx` instead of `./client`
+
+For Windows, follow this guide by Decker https://github.com/DeckerSU/SuperNET/blob/dev-decker-dev/iguana/dexscripts.win32/postest64_how_to.md
+
+
 Download and install the marketmaker. This guide assumes you have `jq` installed already. (`sudo apt-get install jq`)
 
 ```shell
