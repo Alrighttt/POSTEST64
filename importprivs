@@ -1,0 +1,10 @@
+#!/bin/bash
+
+./gen64addrs | jq .addrpairs[] > wifs
+
+while read p; do
+	wif="${p%\"}"
+	wif="${wif#\"}"
+	cd ~/komodo/src
+	./komodo-cli -ac_name=POSTEST64 importprivkey "$wif"
+done <wifs
