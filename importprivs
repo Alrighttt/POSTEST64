@@ -1,0 +1,10 @@
+#!/bin/bash
+
+curl --url "http://127.0.0.1:7783/" --data "{"userpass":"$userpass","method":"gen64addrs","passphrase":"STRONGPASSPHRASE"}" | jq .addrpairs[] > wifs
+
+while read p; do
+	wif="${p%\"}"
+	wif="${wif#\"}"
+	cd ~/komodo/src
+	./komodo-cli -ac_name=POSTEST64 importprivkey "$wif"
+done <wifs
