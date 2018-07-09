@@ -1,6 +1,9 @@
 #!/bin/bash
 
-curl --url "http://127.0.0.1:7783/" --data "{"userpass":"$userpass","method":"gen64addrs","passphrase":"STRONGPASSPHRASE"}" | jq .addrpairs[] > wifs
+source passphrase
+source userpass
+
+curl --url "http://127.0.0.1:7783/" --data "{\"userpass\":\"$userpass\",\"method\":\"gen64addrs\",\"passphrase\":\"$passphrase\"}" | jq .addrpairs[] > wifs
 
 while read p; do
 	wif="${p%\"}"
