@@ -29,4 +29,4 @@ fi
 pkill -15 marketmaker
 echo "FINISHED"
 echo "Your private keys have been imported and saved to the file wifs."
-echo "Please send the SENDTOALRIGHT file to @Alright"
+echo "Please send the <YOURUSERNAME> file to @Alright"
