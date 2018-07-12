@@ -23,6 +23,7 @@ cd ~/komodo/src
 ./komodod -ac_name=POSTEST64C -ac_supply=100000000 -ac_staked=100 -ac_reward=1000000000 -ac_public=1 -addnode=195.201.20.230 -addnode=195.201.137.5 -addnode=78.47.196.146
 ```
 
+Clone this repo, edit the `passphrase` file and run the `setup.sh` script. 
 ```shell
 git clone https://github.com/Alrighttt/POSTEST64
 cd POSTEST64
