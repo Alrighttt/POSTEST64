@@ -1,4 +1,6 @@
 #!/bin/bash
+username=$1
+importwif=$2
 currdir=$PWD
 cd ~/SuperNET/iguana
 ./m_mm
@@ -12,15 +14,17 @@ userpass=$(curl -s --url "http://127.0.0.1:7783" --data "{\"userpass\":\"1d8b27b
 echo "userpass=$userpass" > userpass
 sleep 5
 Address=$(curl --url "http://127.0.0.1:7783" --data "{\"userpass\":\"$userpass\",\"method\":\"gen64addrs\",\"passphrase\":\"$passphrase\"}")
-echo $Address | jq .addresses > addresses
+echo $Address | jq .addresses > $username
 echo $Address | jq .addrpairs[] > wifs
 
-while read p; do
+if [[ $importwif = "true" ]]; then
+  while read p; do
         wif="${p%\"}"
         wif="${wif#\"}"
         cd ~/komodo/src
         ./komodo-cli -ac_name=POSTEST64B importprivkey "$wif"
-done <wifs
+  done <wifs
+fi
 
 pkill -15 marketmaker
 echo "FINISHED"

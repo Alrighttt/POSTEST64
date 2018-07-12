@@ -7,6 +7,16 @@ For Windows, follow this guide by Decker https://github.com/DeckerSU/SuperNET/bl
 
 Download and install the marketmaker. This guide assumes you have `jq` installed already. (`sudo apt-get install jq`)
 
+To use the createaddrs.sh script to just generate your address's and wifs
+
+> `./createaddrs.sh <username> false`
+
+To automatically import the wifs to POSTEST64C
+
+> `./createadrs.sh <username> true`
+
+
+
 ```shell
 git clone https://github.com/jl777/SuperNET
 cd SuperNET/iguana/exchanges
