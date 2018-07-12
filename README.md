@@ -4,31 +4,35 @@ For OSX, follow this guide, but run `./client_osx` instead of `./client`
 
 For Windows, follow this guide by Decker https://github.com/DeckerSU/SuperNET/blob/dev-decker-dev/iguana/dexscripts.win32/postest64_how_to.md
 
+The following guide assumes you have `jq` installed already. (`sudo apt-get install jq`)
 
-Download and install the marketmaker. This guide assumes you have `jq` installed already. (`sudo apt-get install jq`)
+Download and install nanomsg. Follow the guide here:
+https://github.com/KomodoPlatform/KomodoPlatform/wiki/Installing-and-Using-Komodo-Platform-(barterDEX)
 
+Download and install the latest komodod. Build from dev branch
 ```shell
-git clone https://github.com/jl777/SuperNET
-cd SuperNET/iguana/exchanges
+git clone https://github.com/jl777/komodo
+cd komodo
 git checkout dev
-./install
-cd ../dexscripts
-cp ../exchanges/passphrase passphrase
-cp ../exchanges/userpass userpass
+./zcutil/fetch-params.sh
+./zcutil/build.sh $(nproc)
 ```
-Edit the passphrase file with a strong passphrase, and start the marketmaker
+Start the POSTEST64C chain
+```shell
+cd ~/komodo/src
+./komodod -ac_name=POSTEST64C -ac_supply=100000000 -ac_staked=100 -ac_reward=1000000000 -ac_public=1 -addnode=195.201.20.230 -addnode=195.201.137.5 -addnode=78.47.196.146
+```
 
 ```shell
-./client
+git clone https://github.com/Alrighttt/POSTEST64
+cd POSTEST64
 ```
-
-This will output the userpass value for your password, open a new terminal and edit the `userpass` file to reflect this userpass.
+***Edit the `passphrase` file with a strong passphrase before going any further.****
 
 ```shell
-. userpass
-curl --url "http://127.0.0.1:7783" --data "{\"userpass\":\"$userpass\",\"method\":\"gen64addrs\",\"passphrase\":\"STRONGPASSPHRASE\"}" | jq .addresses > SENDTOALRIGHT
+./setup.sh <YOURUSERNAME> true
 ```
 
-Save the marketmaker's output. This will be used to import the private keys to the daemon once the chain is live. Send the SENDTOALRIGHT file to Alright on discord or make a pull request to this repo. If you choose to contact Alright, please confirm that your addresses were added before the test begins. 
+This will create a file with your username. Send this to Alright on discord or make a pull request to this repo. If you would like to only generate the addresses but not import them to the daemon, use `false` with the `setup.sh` script.
 
-Please follow the same format. Add 1 file with your username containing your addresses. Please be sure to add *1* address and your username to the distribution file also. 
+If you choose to do a pull request please follow the same format. Add 1 file with your username containing your addresses. Please be sure to add *1* address and your username to the distribution file also. 
